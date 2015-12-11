@@ -25,7 +25,7 @@ function Spell (name, cost, description) {
     return "The spell " + name  + " costs " + cost + " and it " + description;
   };
 }
-//console.log(Spell('Fireball', 5, 'Conjures a fireball'));
+
 /**
  * A spell that deals damage.
  * We want to keep this code DRY (Don't Repeat Yourself).
@@ -50,7 +50,16 @@ function Spell (name, cost, description) {
  * @property {number} damage
  * @property {string} description
  */
+function DamageSpell (name, cost, damage, description) {
+  Spell.call(this, name, cost, description);
+  this.damage = damage;
+}
+DamageSpell.prototype = new Object(Spell.prototype, {
+  constructor: {
+      value: DamageSpell
 
+  }
+});
 /**
  * Now that you've created some spells, let's create
  * `Spellcaster` objects that can use them!
